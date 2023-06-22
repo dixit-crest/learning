@@ -1,11 +1,11 @@
 # Typescript
 
 - we use interface to combine the types ( combine basic ( primitive) data types), basically create an object.
-`interface Person {
+```interface Person {
   name: string;
   age: number;
   email?: string; // Optional property
-}`
+}```
 
 with this way we can pass an optional property.
 
