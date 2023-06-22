@@ -1,8 +1,12 @@
 const fs = require('fs');
 const path = require('path');
+const http = require('http');
 
-const readableStream = fs.createReadStream(path.join(__dirname, 'files', 'input.txt'), 'utf-8')
+const FILE_PATH = path.join(__dirname, 'files', 'input.txt')
 
-readableStream.on("data", (...variables) => {
-    console.log(variables)
-})
+http.createServer((req, res) => {
+    const fileStream = fs.createReadStream(FILE_PATH);
+    res.setHeader('Content-Disposition', 'attachment; filename="largeFile.txt"');
+    res.setHeader('Content-Type', 'application/octet-stream');
+    fileStream.pipe(res);  
+}).listen(3001, () => console.log('listening on'))
